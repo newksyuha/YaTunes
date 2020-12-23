@@ -5,6 +5,10 @@ export const videoPlayerInit = () => {
     const videoTimePassed = document.querySelector('.video-time__passed');
     const videoProgress = document.querySelector('.video-progress');
     const videoTimeTotal = document.querySelector('.video-time__total');
+    const volumeOff = document.querySelector('.volume-off');
+    const volumeDown = document.querySelector('.volume-down');
+    const videoVolume = document.querySelector('.video-volume');
+    const volumeUp = document.querySelector('.volume-up'); 
 
     const toggleIcon = () => {
         if (videoPlayer.paused) {
@@ -32,6 +36,10 @@ export const videoPlayerInit = () => {
 
     const addZero = n => n < 10 ? '0' + n : n;
 
+    const changeValue = () => {
+        const valueVolume = videoVolume.value;
+        videoPlayer.volume = valueVolume / 100;
+    }
 
     videoPlayer.addEventListener('click', togglePlay);
     videoButtonPlay.addEventListener('click', togglePlay);
@@ -58,11 +66,28 @@ export const videoPlayerInit = () => {
 
     });
 
-    videoProgress.addEventListener('change', () => {
+    videoProgress.addEventListener('input', () => {
         const duration = videoPlayer.duration;
         const value = videoProgress.value;
 
         videoPlayer.currentTime = (value * duration) / 100;
     });
 
+    videoVolume.addEventListener('input', changeValue);
+    
+    changeValue();
+    
+
+    volumeOff.addEventListener('click', () =>{
+       /*  const mute = videoVolume.value; */
+        if(videoPlayer.volume > 0) {
+            videoVolume.value =  0;
+            videoPlayer.volume = 0;
+            
+        } else {
+            videoVolume.value = changeValue;
+            videoPlayer.volume = 0.3;
+        } 
+    });
+  
 };
