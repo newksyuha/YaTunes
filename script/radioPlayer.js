@@ -12,6 +12,7 @@ export const radioPlayerInit = () => {
     audio.type = 'audio/aac';
 
     radioStop.disabled = true;
+    radioVolume.disabled = true;
 
     const changeIconPlay = () => {
         if (audio.paused) {
@@ -24,14 +25,13 @@ export const radioPlayerInit = () => {
             radioStop.classList.remove('fa-play');
         }
     }
+    
     const selectItem = elem => {
         radioItem.forEach(item => item.classList.remove('select'));
         elem.classList.add('select');
     }
 
- 
-
-    const changeValue = () => {
+   const changeValue = () => {
         const valueVolume = radioVolume.value;
         audio.volume = valueVolume / 100;
     }
@@ -63,7 +63,7 @@ export const radioPlayerInit = () => {
         changeIconPlay();
     });
 
+    radioVolume.disabled = false;
     radioVolume.addEventListener('input', changeValue);
     changeValue();
-
 };
