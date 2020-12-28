@@ -1,4 +1,4 @@
-import { addZero } from './supScript.js';
+import { addZero } from '../module/supScript';
 
 export const musicPlayerInit = () => {
     const audio = document.querySelector('.audio');
