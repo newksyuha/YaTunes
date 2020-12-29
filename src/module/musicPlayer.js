@@ -69,7 +69,6 @@ export const musicPlayerInit = () => {
 
         if (target.classList.contains('audio-button__next')) {
             nextTrack();
-
         }
     });
     audioPlayer.addEventListener('ended', () => {
@@ -101,4 +100,9 @@ export const musicPlayerInit = () => {
         const progress = (x / allWidth) * audioPlayer.duration;
         audioPlayer.currentTime = progress;
     });
-};
+
+    /*  musicPlayerInit.stop = */
+    return () => {
+        audioPlayer.pause();
+    }
+}

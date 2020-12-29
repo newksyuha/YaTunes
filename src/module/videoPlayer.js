@@ -1,4 +1,4 @@
-import {addZero} from '../module/supScript';
+import { addZero } from '../module/supScript';
 
 export const videoPlayerInit = () => {
     const videoPlayer = document.querySelector('.video-player');
@@ -74,20 +74,25 @@ export const videoPlayerInit = () => {
 
     videoVolume.addEventListener('input', changeValue);
     changeValue();
-    
 
-    volumeOff.addEventListener('click', () =>{
-        if(videoPlayer.volume > 0) {
-            videoVolume.value =  0;
-            videoPlayer.volume = 0;   
+
+    volumeOff.addEventListener('click', () => {
+        if (videoPlayer.volume > 0) {
+            videoVolume.value = 0;
+            videoPlayer.volume = 0;
         } else {
             videoVolume.value = changeValue;
             videoPlayer.volume = 0.1;
-        } 
+        }
     });
 
-        videoFullscreen.addEventListener('click', () => {
-            videoPlayer.requestFullscreen();
-        })
-  
+    videoFullscreen.addEventListener('click', () => {
+        videoPlayer.requestFullscreen();
+    });
+
+    /* videoPlayerInit.stop = */
+    return () => {
+        videoPlayer.pause();
+        toggleIcon();
+    };
 };
